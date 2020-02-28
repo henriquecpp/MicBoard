@@ -155,25 +155,29 @@ namespace MicBoard
             if (e.Button == MouseButtons.Right)
             {
                 var testResult = dataGridView1.HitTest(e.X, e.Y);
-                dataGridView1.ClearSelection();
-                dataGridView1.Rows[testResult.RowIndex].Selected = true;
 
-                ContextMenuStrip m = new ContextMenuStrip();
-                ToolStripMenuItem tm;
+                if (testResult.RowIndex >= 0)
+                {
+                    dataGridView1.ClearSelection();
+                    dataGridView1.Rows[testResult.RowIndex].Selected = true;
 
-                tm = new ToolStripMenuItem("Reproduzir",null);
-                m.Items.Add(tm);
+                    ContextMenuStrip m = new ContextMenuStrip();
+                    ToolStripMenuItem tm;
 
-                tm = new ToolStripMenuItem("Adicionar Tecla de atalho", null);
-                m.Items.Add(tm);
+                    tm = new ToolStripMenuItem("Reproduzir", null);
+                    m.Items.Add(tm);
 
-                tm = new ToolStripMenuItem("Deletar", null);
-                m.Items.Add(tm);
-                //cor do texto
-                m.ForeColor = Color.FromArgb(230, 230, 230);
-                m.Renderer = new ToolStripProfessionalRenderer(new MenuColorRender());
-                
-                m.Show(dataGridView1, new Point(e.X, e.Y));
+                    tm = new ToolStripMenuItem("Adicionar Tecla de atalho", null);
+                    m.Items.Add(tm);
+
+                    tm = new ToolStripMenuItem("Deletar", null);
+                    m.Items.Add(tm);
+                    //cor do texto
+                    m.ForeColor = Color.FromArgb(230, 230, 230);
+                    m.Renderer = new ToolStripProfessionalRenderer(new MenuColorRender());
+
+                    m.Show(dataGridView1, new Point(e.X, e.Y));
+                }               
 
             }
         }
