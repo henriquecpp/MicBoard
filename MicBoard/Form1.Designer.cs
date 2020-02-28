@@ -29,19 +29,28 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.myTitleBar = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnRestore = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adicionarSomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.indexColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.directoryColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.durationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.keyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.myTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // myTitleBar
@@ -127,19 +136,6 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // listView1
-            // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.BackColor = System.Drawing.Color.Gray;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 150);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(776, 288);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -167,8 +163,96 @@
             // 
             this.adicionarSomToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.adicionarSomToolStripMenuItem.Name = "adicionarSomToolStripMenuItem";
-            this.adicionarSomToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.adicionarSomToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.adicionarSomToolStripMenuItem.Text = "Adicionar som";
+            this.adicionarSomToolStripMenuItem.Click += new System.EventHandler(this.adicionarSomToolStripMenuItem_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.ColumnHeadersHeight = 30;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.indexColumn,
+            this.titleColumn,
+            this.directoryColumn,
+            this.durationColumn,
+            this.keyColumn});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 187);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(776, 251);
+            this.dataGridView1.TabIndex = 3;
+            // 
+            // indexColumn
+            // 
+            this.indexColumn.HeaderText = "#";
+            this.indexColumn.Name = "indexColumn";
+            this.indexColumn.ReadOnly = true;
+            this.indexColumn.Width = 50;
+            // 
+            // titleColumn
+            // 
+            this.titleColumn.HeaderText = "Título";
+            this.titleColumn.Name = "titleColumn";
+            this.titleColumn.ReadOnly = true;
+            this.titleColumn.Width = 224;
+            // 
+            // directoryColumn
+            // 
+            this.directoryColumn.HeaderText = "Diretório";
+            this.directoryColumn.Name = "directoryColumn";
+            this.directoryColumn.ReadOnly = true;
+            this.directoryColumn.Width = 200;
+            // 
+            // durationColumn
+            // 
+            this.durationColumn.HeaderText = "Duração";
+            this.durationColumn.Name = "durationColumn";
+            this.durationColumn.ReadOnly = true;
+            this.durationColumn.Width = 120;
+            // 
+            // keyColumn
+            // 
+            this.keyColumn.HeaderText = "Tecla(s) de atalho";
+            this.keyColumn.Name = "keyColumn";
+            this.keyColumn.ReadOnly = true;
+            this.keyColumn.Width = 180;
             // 
             // Form1
             // 
@@ -176,7 +260,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.myTitleBar);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -188,6 +272,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -200,10 +285,15 @@
         private System.Windows.Forms.Button btnRestore;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem arquivoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem adicionarSomToolStripMenuItem;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn indexColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn titleColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn directoryColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn durationColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn keyColumn;
     }
 }
 

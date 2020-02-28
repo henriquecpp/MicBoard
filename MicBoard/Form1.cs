@@ -17,7 +17,8 @@ namespace MicBoard
         {
             InitializeComponent();
             //carregando a classe que renderiza as cores do menu
-            menuStrip1.Renderer = new ToolStripProfessionalRenderer(new MenuColorRender());            
+            menuStrip1.Renderer = new ToolStripProfessionalRenderer(new MenuColorRender());
+            fillGridView();
         }
         //eventos
         private void btnClose_Click(object sender, EventArgs e)
@@ -32,7 +33,6 @@ namespace MicBoard
             WindowState = FormWindowState.Maximized;
             //quando o botao de maximizar é clicado, o botao de normalizar a janela é colocado na frente e vice-versa
             btnRestore.BringToFront();
-            MessageBox.Show(listView1.Width+" "+listView1.Height);
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
@@ -60,9 +60,9 @@ namespace MicBoard
         public const int HT_CAPTION = 0x2;
 
         [DllImportAttribute("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        private static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
-        public static extern bool ReleaseCapture();
+        private static extern bool ReleaseCapture();
 
         protected override void WndProc(ref Message m)
         {
@@ -118,6 +118,35 @@ namespace MicBoard
                 CreateParams cp = base.CreateParams;
                 cp.Style |= 0x20000; // <--- use 0x20000
                 return cp;
+            }
+        }
+
+        private void adicionarSomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.InitialDirectory = @"D:\";
+            openFileDialog1.Title = "Procurar arquivo de audio";
+            openFileDialog1.Filter = "Audio (*.mp3,*.m4a) | *.mp3; *.m4a";
+            var result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                new DataManager().Save(openFileDialog1.SafeFileName, openFileDialog1.FileName);
+                fillGridView();
+            }
+        }
+
+        public void fillGridView()
+        {
+            dataGridView1.Rows.Clear();
+            List<Model> dataList = new DataManager().List();
+            for (int i=0; i<dataList.Count;i++)
+            {
+                dataGridView1.Rows.Add();
+                dataGridView1.Rows[i].Cells[0].Value = i + 1;
+                dataGridView1.Rows[i].Cells[1].Value = dataList.ElementAt(i).FileName;
+                dataGridView1.Rows[i].Cells[2].Value = dataList.ElementAt(i).Directory;
+                dataGridView1.Rows[i].Cells[3].Value = dataList.ElementAt(i).Duration;
+                dataGridView1.Rows[i].Cells[4].Value = dataList.ElementAt(i).KeyShortcut;
             }
         }
     }
