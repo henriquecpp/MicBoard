@@ -14,7 +14,7 @@ namespace MicBoard
         {
             get
             {
-                return Color.Black;
+                return Color.FromArgb(36, 36, 36);
             }
         }
 
@@ -22,7 +22,7 @@ namespace MicBoard
         {
             get
             {
-                return Color.Black;
+                return Color.FromArgb(36, 36, 36);
             }
         }
 
@@ -30,7 +30,7 @@ namespace MicBoard
         {
             get
             {
-                return Color.Black;
+                return Color.FromArgb(36, 36, 36);
             }
         }
 
@@ -38,7 +38,7 @@ namespace MicBoard
         {
             get
             {
-                return Color.Black;
+                return Color.FromArgb(36, 36, 36);
             }
         }
 
