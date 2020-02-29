@@ -185,7 +185,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeight = 30;
+            this.dataGridView1.ColumnHeadersHeight = 40;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.indexColumn,
             this.titleColumn,
@@ -223,37 +223,38 @@
             // indexColumn
             // 
             this.indexColumn.HeaderText = "#";
+            this.indexColumn.MinimumWidth = 25;
             this.indexColumn.Name = "indexColumn";
             this.indexColumn.ReadOnly = true;
-            this.indexColumn.Width = 50;
+            this.indexColumn.Width = 65;
             // 
             // titleColumn
             // 
+            this.titleColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.titleColumn.HeaderText = "Título";
             this.titleColumn.Name = "titleColumn";
             this.titleColumn.ReadOnly = true;
-            this.titleColumn.Width = 224;
             // 
             // directoryColumn
             // 
+            this.directoryColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.directoryColumn.HeaderText = "Diretório";
             this.directoryColumn.Name = "directoryColumn";
             this.directoryColumn.ReadOnly = true;
-            this.directoryColumn.Width = 200;
             // 
             // durationColumn
             // 
+            this.durationColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.durationColumn.HeaderText = "Duração";
             this.durationColumn.Name = "durationColumn";
             this.durationColumn.ReadOnly = true;
-            this.durationColumn.Width = 120;
             // 
             // keyColumn
             // 
+            this.keyColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.keyColumn.HeaderText = "Tecla(s) de atalho";
             this.keyColumn.Name = "keyColumn";
             this.keyColumn.ReadOnly = true;
-            this.keyColumn.Width = 180;
             // 
             // Form1
             // 
