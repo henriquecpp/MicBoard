@@ -9,5 +9,6 @@ namespace MicBoard
         public string Directory { get; set; }
         public string Duration { get; set; }
         public string KeyShortcut { get; set; } = "";
+        public string TriggerSum { get; set; } = "";
     }
 }
