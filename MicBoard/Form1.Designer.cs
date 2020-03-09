@@ -47,6 +47,7 @@
             this.directoryColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.durationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.keyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.myTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -191,7 +192,8 @@
             this.titleColumn,
             this.directoryColumn,
             this.durationColumn,
-            this.keyColumn});
+            this.keyColumn,
+            this.codeColumn});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -226,11 +228,12 @@
             this.indexColumn.MinimumWidth = 25;
             this.indexColumn.Name = "indexColumn";
             this.indexColumn.ReadOnly = true;
-            this.indexColumn.Width = 65;
+            this.indexColumn.Width = 45;
             // 
             // titleColumn
             // 
             this.titleColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.titleColumn.FillWeight = 87.99342F;
             this.titleColumn.HeaderText = "Título";
             this.titleColumn.Name = "titleColumn";
             this.titleColumn.ReadOnly = true;
@@ -238,6 +241,7 @@
             // directoryColumn
             // 
             this.directoryColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.directoryColumn.FillWeight = 87.99342F;
             this.directoryColumn.HeaderText = "Diretório";
             this.directoryColumn.Name = "directoryColumn";
             this.directoryColumn.ReadOnly = true;
@@ -245,6 +249,7 @@
             // durationColumn
             // 
             this.durationColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.durationColumn.FillWeight = 87.99342F;
             this.durationColumn.HeaderText = "Duração";
             this.durationColumn.Name = "durationColumn";
             this.durationColumn.ReadOnly = true;
@@ -252,9 +257,19 @@
             // keyColumn
             // 
             this.keyColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.keyColumn.FillWeight = 87.99342F;
             this.keyColumn.HeaderText = "Tecla(s) de atalho";
             this.keyColumn.Name = "keyColumn";
             this.keyColumn.ReadOnly = true;
+            // 
+            // codeColumn
+            // 
+            this.codeColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.codeColumn.FillWeight = 45F;
+            this.codeColumn.HeaderText = "Code(s)";
+            this.codeColumn.Name = "codeColumn";
+            this.codeColumn.ReadOnly = true;
+            this.codeColumn.Visible = false;
             // 
             // Form1
             // 
@@ -296,6 +311,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn directoryColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn durationColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn keyColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codeColumn;
     }
 }
 
