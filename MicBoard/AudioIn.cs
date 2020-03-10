@@ -4,32 +4,32 @@ namespace MicBoard
 {
     class AudioIn
     {
-        private static WaveOut Mic = null;
+        public static WaveOut Microphone = null;
         private static AudioFileReader audioFile = null;
-        public static void Play(string path)
+        public static void Play(string path, float volume)
         {            
             audioFile = new AudioFileReader(path);
 
             Stop();
-            Mic = new WaveOut();
-            Mic.DeviceNumber = 1;
+            Microphone = new WaveOut();
+            Microphone.DeviceNumber = 1;
 
-            Mic.DesiredLatency = 700;
-            Mic.NumberOfBuffers = 3;
-            Mic.Volume = 0.5f;
+            Microphone.DesiredLatency = 700;
+            Microphone.NumberOfBuffers = 3;
+            Microphone.Volume = volume;
 
-            Mic.Init(audioFile);
+            Microphone.Init(audioFile);
 
-            Mic.Play();;
+            Microphone.Play();;
         }
 
         public static void Stop()
         {
-            if (Mic != null)
+            if (Microphone != null)
             {
-                Mic.Stop();
-                Mic.Dispose();
-                Mic = null;
+                Microphone.Stop();
+                Microphone.Dispose();
+                Microphone = null;
             }
         }
 
