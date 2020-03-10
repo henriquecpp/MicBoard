@@ -5,14 +5,17 @@ namespace MicBoard
     class AudioOut
     {
         
-        private static WasapiOut Speaker = null;
+        public static WaveOut Speaker = null;
         private static AudioFileReader audioFile = null;
-        public static void Play(string path)
+        public static void Play(string path, float volume)
         {            
             audioFile = new AudioFileReader(path);
 
             Stop();
-            Speaker = new WasapiOut();
+            Speaker = new WaveOut();
+            Speaker.DesiredLatency = 700;
+            Speaker.NumberOfBuffers = 3;
+            Speaker.Volume = volume;
 
             Speaker.Init(audioFile);            
 
