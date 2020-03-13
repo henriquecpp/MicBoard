@@ -30,6 +30,7 @@ namespace MicBoard
                 Microphone.Stop();
                 Microphone.Dispose();
                 Microphone = null;
+                audioFile = null;
             }
         }
 

@@ -29,6 +29,7 @@ namespace MicBoard
                 Speaker.Stop();
                 Speaker.Dispose();
                 Speaker = null;
+                audioFile = null;
             }
         }
     }
