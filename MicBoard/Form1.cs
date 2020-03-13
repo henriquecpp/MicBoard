@@ -15,6 +15,8 @@ namespace MicBoard
     {        
         [DllImport("user32.dll")]
         private static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vlc);
+        [DllImport("user32.dll")]
+        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
         //Usando código não gerenciado para poder tornar os movimentos da janela mais suave
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -26,10 +28,16 @@ namespace MicBoard
 
         protected override void WndProc(ref Message m)
         {
-            const int RESIZE_HANDLE_SIZE = 10;
             
             if (m.Msg == 0x0312)
-            {    // Trap WM_HOTKEY
+            {
+                if(InputBox.ActiveForm.Focused || InputBox.InputField.Focused)
+                {
+                    
+                    MessageBox.Show("Essa(s) tecla(s) de atalho já está(ão) em uso! Insira outra.");
+                    InputBox.ClearAll();
+                    return;
+                }
                                 
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
@@ -44,6 +52,7 @@ namespace MicBoard
                 return;
             }
 
+            const int RESIZE_HANDLE_SIZE = 10;
             switch (m.Msg)
             {//Todas as definicoes para cada caso em https://docs.microsoft.com/en-us/windows/win32/inputdev/wm-nchittest
                 case 0x0084:
@@ -247,6 +256,7 @@ namespace MicBoard
             //caso esteja reproduzindom será parada a transmissão antes de apagar os dados
             StopOnForm(sender, e, testResult);
             int i = int.Parse(dataGridView1.Rows[testResult.RowIndex].Cells[0].Value.ToString()) - 1;
+            UnregisterHotKey(this.Handle, i);
             new DataManager().Delete(i);
             fillGridView();
         }
@@ -262,8 +272,11 @@ namespace MicBoard
             }            
             if (input == null) return;
             int i = int.Parse(dataGridView1.Rows[testResult.RowIndex].Cells[0].Value.ToString())-1;
+            //A tecla registrada antes será removida
+            UnregisterHotKey(this.Handle, i);
             new DataManager().Update(i, input.Last().Key, input.Last().Value);
             fillGridView();
+            //E após salva, será registrada a nova
             MountTrigger();
         }
 
@@ -276,7 +289,7 @@ namespace MicBoard
                 //MessageBox.Show(currValue);
                 if (!String.IsNullOrEmpty(currValue))
                 {
-                    RegisterHotKey(this.Handle, int.Parse(dataGridView1.Rows[i].Cells[0].Value.ToString()), int.Parse(currValue.Split('+')[0]), int.Parse(currValue.Split('+')[1]) );
+                    RegisterHotKey(this.Handle, (int.Parse(dataGridView1.Rows[i].Cells[0].Value.ToString())-1), int.Parse(currValue.Split('+')[0]), int.Parse(currValue.Split('+')[1]) );
                 }
                 currValue = null;
             }
