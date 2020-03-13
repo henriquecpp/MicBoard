@@ -12,8 +12,8 @@ namespace MicBoard
 {
     public partial class InputBox : Form
     {
-        public Dictionary<string, string> KeyValues { get; set; }
-        List<int> keysPressed = new List<int>();
+        public static Dictionary<string, string> KeyValues { get; set; }
+        static List<int> keysPressed = new List<int>();
         public InputBox()
         {
             InitializeComponent();
@@ -44,9 +44,9 @@ namespace MicBoard
 
         }
 
-        private void ClearAll(object sender, EventArgs e)
+        public static void ClearAll()
         {
-            KeyValues.Clear();
+            KeyValues = null;
             keysPressed.Clear();
             InputField.Text = "";
             InputField.Focus();
