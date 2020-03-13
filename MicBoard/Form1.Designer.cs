@@ -52,6 +52,8 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.VolumeIn = new System.Windows.Forms.TrackBar();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.preferênciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.myTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -152,7 +154,8 @@
             this.menuStrip1.AutoSize = false;
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.arquivoToolStripMenuItem});
+            this.arquivoToolStripMenuItem,
+            this.editarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 37);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(801, 23);
@@ -327,6 +330,22 @@
             this.pictureBox3.TabIndex = 8;
             this.pictureBox3.TabStop = false;
             // 
+            // editarToolStripMenuItem
+            // 
+            this.editarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.preferênciasToolStripMenuItem});
+            this.editarToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(49, 19);
+            this.editarToolStripMenuItem.Text = "Editar";
+            // 
+            // preferênciasToolStripMenuItem
+            // 
+            this.preferênciasToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.preferênciasToolStripMenuItem.Name = "preferênciasToolStripMenuItem";
+            this.preferênciasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.preferênciasToolStripMenuItem.Text = "Preferências";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -380,6 +399,8 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TrackBar VolumeIn;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem preferênciasToolStripMenuItem;
     }
 }
 

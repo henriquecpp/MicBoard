@@ -100,6 +100,12 @@ namespace MicBoard
             InitializeComponent();
             //carregando a classe que renderiza as cores do menu
             menuStrip1.Renderer = new ToolStripProfessionalRenderer(new MenuColorRender());
+            UserPrefModel volumeSettings = new UserDataManager().LoadVolumeSettings();
+            if (volumeSettings != null)
+            {
+                VolumeOut.Value = volumeSettings.SpeakerVolume;
+                VolumeIn.Value = volumeSettings.MicVolume;
+            }
             fillGridView();
             MountTrigger();
             
@@ -107,9 +113,14 @@ namespace MicBoard
         //eventos
         private void btnClose_Click(object sender, EventArgs e)
         {
+            UserPrefModel u = new UserPrefModel();
+            u.SpeakerVolume = VolumeOut.Value;
+            u.MicVolume = VolumeIn.Value;
+            new UserDataManager().SavePreferences(u);
+
             AudioIn.Stop();
             AudioOut.Stop();
-            Application.Exit();            
+            Application.Exit();
         }
 
         private void btnMaximize_Click(object sender, EventArgs e)
@@ -192,38 +203,60 @@ namespace MicBoard
 
                     ContextMenuStrip m = new ContextMenuStrip();
                     ToolStripMenuItem tm;
+                    
+                    tm = new ToolStripMenuItem("Reproduzir", null, (eventSender, eventArgs) => PlayOnForm(eventSender, eventArgs, (DataGridView.HitTestInfo)testResult));
+                    m.Items.Add(tm);
+                    //caso a track selecionada esteja em reproduçao, sera exibida a opcao de parar ela
+                    string fileSelected = dataGridView1.Rows[testResult.RowIndex].Cells[2].Value.ToString();
+                    if ((AudioOut.audioFile!=null || AudioIn.audioFile!=null) && (AudioOut.audioFile.FileName == fileSelected || AudioIn.audioFile.FileName == fileSelected))
+                    {
+                        tm = new ToolStripMenuItem("Parar", null, (eventSender, eventArgs) => StopOnForm(eventSender, eventArgs, (DataGridView.HitTestInfo)testResult));
+                        m.Items.Add(tm);
+                    }
 
-                    tm = new ToolStripMenuItem("Reproduzir", null);
+                    tm = new ToolStripMenuItem("Adicionar Tecla de atalho", null, (eventSender, eventArgs) => GetKeys(eventSender, eventArgs, (DataGridView.HitTestInfo) testResult));
                     m.Items.Add(tm);
 
-                    tm = new ToolStripMenuItem("Adicionar Tecla de atalho", null, (sender2, e2) => GetKeys(sender2, e2, (DataGridView.HitTestInfo) testResult) );
-                    m.Items.Add(tm);
-
-                    tm = new ToolStripMenuItem("Deletar", null, (sender3, e3) => DeleteItem(sender3, e3, (DataGridView.HitTestInfo)testResult) );
+                    tm = new ToolStripMenuItem("Deletar", null, (eventSender, eventArgs) => DeleteItem(eventSender, eventArgs, (DataGridView.HitTestInfo)testResult));
                     m.Items.Add(tm);
                     //cor do texto
                     m.ForeColor = Color.FromArgb(230, 230, 230);
                     m.Renderer = new ToolStripProfessionalRenderer(new MenuColorRender());
 
                     m.Show(dataGridView1, new Point(e.X, e.Y));
+                    fileSelected = null;
                 }               
 
             }
         }
 
-        private void DeleteItem(object sender3, EventArgs e3, DataGridView.HitTestInfo result)
+        private void StopOnForm(object eventSender, EventArgs eventArgs, DataGridView.HitTestInfo testResult)
         {
-            int i = int.Parse(dataGridView1.Rows[result.RowIndex].Cells[0].Value.ToString()) - 1;
+            AudioIn.Stop();
+            AudioOut.Stop();
+        }
+
+        private void PlayOnForm(object sender, EventArgs e, DataGridView.HitTestInfo testResult)
+        {
+            AudioIn.Play(dataGridView1.Rows[testResult.RowIndex].Cells[2].Value.ToString(), float.Parse(VolumeIn.Value.ToString()) / 100);
+            AudioOut.Play(dataGridView1.Rows[testResult.RowIndex].Cells[2].Value.ToString(), float.Parse(VolumeOut.Value.ToString()) / 100);
+        }
+
+        private void DeleteItem(object sender, EventArgs e, DataGridView.HitTestInfo testResult)
+        {
+            //caso esteja reproduzindom será parada a transmissão antes de apagar os dados
+            StopOnForm(sender, e, testResult);
+            int i = int.Parse(dataGridView1.Rows[testResult.RowIndex].Cells[0].Value.ToString()) - 1;
             new DataManager().Delete(i);
             fillGridView();
         }
 
-        public void GetKeys(Object sender, EventArgs e, DataGridView.HitTestInfo result)
+        public void GetKeys(Object sender, EventArgs e, DataGridView.HitTestInfo testResult)
         {
             //Interaction.InputBox("Insira uma ou mais teclas", "Definir teclas de atalho", "");
             Dictionary<string, string> input = InputBox.ShowDialog("Insira a(s) tecla(s) de atalho:");
             if (input == null || String.IsNullOrEmpty(input.Last().Key) || String.IsNullOrEmpty(input.Last().Value)) return;
-            int i = int.Parse(dataGridView1.Rows[result.RowIndex].Cells[0].Value.ToString())-1;
+            int i = int.Parse(dataGridView1.Rows[testResult.RowIndex].Cells[0].Value.ToString())-1;
             new DataManager().Update(i, input.Last().Key, input.Last().Value);
             fillGridView();
             MountTrigger();
