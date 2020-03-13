@@ -254,8 +254,13 @@ namespace MicBoard
         public void GetKeys(Object sender, EventArgs e, DataGridView.HitTestInfo testResult)
         {
             //Interaction.InputBox("Insira uma ou mais teclas", "Definir teclas de atalho", "");
-            Dictionary<string, string> input = InputBox.ShowDialog("Insira a(s) tecla(s) de atalho:");
-            if (input == null || String.IsNullOrEmpty(input.Last().Key) || String.IsNullOrEmpty(input.Last().Value)) return;
+            Dictionary<string, string> input = null;
+            using (InputBox InputBox = new InputBox())
+            {
+                if (InputBox.ShowDialog() == DialogResult.OK)
+                    input = InputBox.KeyValues;
+            }            
+            if (input == null) return;
             int i = int.Parse(dataGridView1.Rows[testResult.RowIndex].Cells[0].Value.ToString())-1;
             new DataManager().Update(i, input.Last().Key, input.Last().Value);
             fillGridView();
