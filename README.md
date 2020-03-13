@@ -18,7 +18,7 @@ A program designed to play audio through the microphone. Ideal to use when playi
 6 -  On the recording tab, click on the **CABLE Output**, and then set it as default
 ![](https://i.imgur.com/JAmhGVJ.png)
 
-7 - After that, right click on the **Microphone**, **properties**, and then on the **listening** tab, configure it as follows:
+7 - After that, right click on the **Microphone**, **properties**, and then on the **listen** tab, configure it as follows:
 ![](https://i.imgur.com/5OTG4st.png)
 
 After doing everything correctly, your computer is configured to use the MicBoard.
