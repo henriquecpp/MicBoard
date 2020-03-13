@@ -6,7 +6,7 @@ namespace MicBoard
     {
         
         public static WaveOut Speaker = null;
-        private static AudioFileReader audioFile = null;
+        public static AudioFileReader audioFile = null;
         public static void Play(string path, float volume)
         {            
             audioFile = new AudioFileReader(path);
