@@ -41,6 +41,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adicionarSomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.preferênciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.indexColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,8 +54,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.VolumeIn = new System.Windows.Forms.TrackBar();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.preferênciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.myTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -179,6 +179,22 @@
             this.adicionarSomToolStripMenuItem.Text = "Adicionar som";
             this.adicionarSomToolStripMenuItem.Click += new System.EventHandler(this.adicionarSomToolStripMenuItem_Click);
             // 
+            // editarToolStripMenuItem
+            // 
+            this.editarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.preferênciasToolStripMenuItem});
+            this.editarToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(49, 19);
+            this.editarToolStripMenuItem.Text = "Editar";
+            // 
+            // preferênciasToolStripMenuItem
+            // 
+            this.preferênciasToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.preferênciasToolStripMenuItem.Name = "preferênciasToolStripMenuItem";
+            this.preferênciasToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.preferênciasToolStripMenuItem.Text = "Preferências";
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -301,7 +317,7 @@
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(716, 82);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(50, 37);
+            this.pictureBox2.Size = new System.Drawing.Size(34, 28);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
@@ -325,26 +341,10 @@
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(716, 142);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(50, 39);
+            this.pictureBox3.Size = new System.Drawing.Size(34, 28);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 8;
             this.pictureBox3.TabStop = false;
-            // 
-            // editarToolStripMenuItem
-            // 
-            this.editarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.preferênciasToolStripMenuItem});
-            this.editarToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(49, 19);
-            this.editarToolStripMenuItem.Text = "Editar";
-            // 
-            // preferênciasToolStripMenuItem
-            // 
-            this.preferênciasToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.preferênciasToolStripMenuItem.Name = "preferênciasToolStripMenuItem";
-            this.preferênciasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.preferênciasToolStripMenuItem.Text = "Preferências";
             // 
             // Form1
             // 
