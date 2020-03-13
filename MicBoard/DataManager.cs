@@ -9,7 +9,7 @@ namespace MicBoard
 {
     class DataManager
     {
-        string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//MicBoardFileMap.xml";
+        string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\MicBoardFileMap.xml";
         public void Save(string filename, string directory)
         {
             string duration = GetDuration(directory);   
