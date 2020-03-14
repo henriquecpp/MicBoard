@@ -5,12 +5,13 @@ namespace MicBoard
     class AudioIn
     {
         public static WaveOut Microphone = null;
-        public static AudioFileReader audioFile = null;
+        public static AudioFileReader AudioFile = null;
         public static void Play(string path, float volume)
         {            
-            audioFile = new AudioFileReader(path);
-
             Stop();
+            
+            AudioFile = new AudioFileReader(path);
+
             Microphone = new WaveOut();
             Microphone.DeviceNumber = 1;
 
@@ -18,7 +19,7 @@ namespace MicBoard
             Microphone.NumberOfBuffers = 3;
             Microphone.Volume = volume;
 
-            Microphone.Init(audioFile);
+            Microphone.Init(AudioFile);
 
             Microphone.Play();;
         }
@@ -30,7 +31,7 @@ namespace MicBoard
                 Microphone.Stop();
                 Microphone.Dispose();
                 Microphone = null;
-                audioFile = null;
+                AudioFile = null;
             }
         }
 

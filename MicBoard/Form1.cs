@@ -218,7 +218,7 @@ namespace MicBoard
                     m.Items.Add(tm);
                     //caso a track selecionada esteja em reproduçao, sera exibida a opcao de parar ela
                     string fileSelected = dataGridView1.Rows[testResult.RowIndex].Cells[2].Value.ToString();
-                    if ((AudioOut.audioFile!=null || AudioIn.audioFile!=null) && (AudioOut.audioFile.FileName == fileSelected || AudioIn.audioFile.FileName == fileSelected))
+                    if ((AudioOut.AudioFile!=null || AudioIn.AudioFile!=null) && (AudioOut.AudioFile.FileName == fileSelected || AudioIn.AudioFile.FileName == fileSelected))
                     {
                         tm = new ToolStripMenuItem("Parar", null, (eventSender, eventArgs) => StopOnForm(eventSender, eventArgs, (DataGridView.HitTestInfo)testResult));
                         m.Items.Add(tm);

@@ -6,18 +6,19 @@ namespace MicBoard
     {
         
         public static WaveOut Speaker = null;
-        public static AudioFileReader audioFile = null;
+        public static AudioFileReader AudioFile = null;
         public static void Play(string path, float volume)
         {            
-            audioFile = new AudioFileReader(path);
-
             Stop();
+
+            AudioFile = new AudioFileReader(path);
+
             Speaker = new WaveOut();
             Speaker.DesiredLatency = 700;
             Speaker.NumberOfBuffers = 3;
             Speaker.Volume = volume;
 
-            Speaker.Init(audioFile);            
+            Speaker.Init(AudioFile);            
 
             Speaker.Play();
         }
@@ -29,7 +30,7 @@ namespace MicBoard
                 Speaker.Stop();
                 Speaker.Dispose();
                 Speaker = null;
-                audioFile = null;
+                AudioFile = null;
             }
         }
     }
