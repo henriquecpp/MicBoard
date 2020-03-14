@@ -24,7 +24,7 @@ A program designed to play audio through the microphone. Ideal to use when playi
 After doing everything correctly, your computer is configured to use the MicBoard.
 
 ## Next steps
-Download the program by [clicking here](http://download1078.mediafire.com/2sq0bomj8s4g/kyctk5o387tlrss/MicBoard.zip), extract the .zip file, and start using it.
+Download the program by [clicking here](http://download1479.mediafire.com/r14f70fcpbyg/kyctk5o387tlrss/MicBoard.zip), extract the .zip file, and start using it.
 
 #### Comments:
  - Windows can prevent the program from running, accusing it as potentially malicious, but don't worry, there is simply no digital signature. Proceed with execution as normal.
