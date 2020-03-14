@@ -31,7 +31,8 @@ namespace MicBoard
             
             if (m.Msg == 0x0312)
             {
-                if(InputBox.ActiveForm.Focused || InputBox.InputField.Focused)
+                //se o InputBox nao for inicializado, o InputField terá valor nulo, por isso é necessario fazer essa verificacao antes
+                if(InputBox.InputField != null && InputBox.InputField.ContainsFocus)
                 {
                     
                     MessageBox.Show("Essa(s) tecla(s) de atalho já está(ão) em uso! Insira outra.");
