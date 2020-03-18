@@ -1,4 +1,7 @@
 ﻿using NAudio.Wave;
+using System;
+using System.Linq;
+using VideoLibrary;
 
 namespace MicBoard
 {
@@ -6,20 +9,30 @@ namespace MicBoard
     {
         public static WaveOut Microphone = null;
         public static AudioFileReader AudioFile = null;
+        public static MediaFoundationReader AudioWeb = null;
         public static void Play(string path, float volume)
         {            
             Stop();
             
-            AudioFile = new AudioFileReader(path);
-
             Microphone = new WaveOut();
-            Microphone.DeviceNumber = 1;
 
-            Microphone.DesiredLatency = 700;
-            Microphone.NumberOfBuffers = 3;
+            Microphone.DeviceNumber = 1;            
             Microphone.Volume = volume;
 
-            Microphone.Init(AudioFile);
+            Uri uriTest;
+            bool isURL = Uri.TryCreate(path, UriKind.Absolute, out uriTest) && (uriTest.Scheme == Uri.UriSchemeHttp || uriTest.Scheme == Uri.UriSchemeHttps);
+
+            if (isURL)
+            {
+                string source = YouTube.Default.GetAllVideos(path).FirstOrDefault(v => v.AudioFormat == AudioFormat.Aac && v.AdaptiveKind == AdaptiveKind.Audio).Uri;
+                AudioWeb = new MediaFoundationReader(source);
+                Microphone.Init(AudioWeb);
+            }
+            else
+            {
+                AudioFile = new AudioFileReader(path);
+                Microphone.Init(AudioFile);
+            }
 
             Microphone.Play();;
         }
@@ -32,6 +45,7 @@ namespace MicBoard
                 Microphone.Dispose();
                 Microphone = null;
                 AudioFile = null;
+                AudioWeb = null;
             }
         }
 
